@@ -53,7 +53,7 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-xp47l.xp47l.sandbox1456.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
+sed 's/apps.*com/apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
 ```
 Create the tenant
 ```
@@ -70,7 +70,7 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-xp47l.xp47l.sandbox1456.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
+sed 's/apps.*com/apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
 ```
 Create the tenant
 ```
@@ -88,7 +88,7 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-xp47l.xp47l.sandbox1456.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
+sed 's/apps.*com/apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
 ```
 Create the tenant
 ```
