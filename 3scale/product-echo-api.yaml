@@ -54,7 +54,7 @@ spec:
           metricMethodRef:
             systemName: echo_with_params
         - from: 201
-          to:
+          to: ~
           pricePerUnit: "0.01"
           metricMethodRef:
             systemName: echo_with_params
