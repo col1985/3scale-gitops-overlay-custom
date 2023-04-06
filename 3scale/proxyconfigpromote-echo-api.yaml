@@ -8,4 +8,4 @@ spec:
   Production: true
   productCRName: echo-api-product-sample
   production: true
-  deleteCR: true
+  deleteCR: false
