@@ -2,7 +2,6 @@ apiVersion: capabilities.3scale.net/v1beta1
 kind: ProxyConfigPromote
 metadata:
   name: proxyconfigpromote-echo-api
-  namespace: threescale-production
 spec:
   productCRName: echo-api-product-sample
   production: true
