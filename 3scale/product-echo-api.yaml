@@ -45,17 +45,17 @@ spec:
       appsRequireApproval: false
       published: true
       trialPeriod: 0
-      setupFee: 0.0
-      costMonth: 5.0
+      setupFee: "20.00"
+      costMonth: "5.00"
       pricingRules:
         - from: 1
           to: 200
-          pricePerUnit: 0.05
+          pricePerUnit: "0.05"
           metricMethodRef:
             systemName: echo_with_params
         - from: 201
-          to:
-          pricePerUnit: 0.01
+          to: 10000
+          pricePerUnit: "0.01"
           metricMethodRef:
             systemName: echo_with_params
       limits:
@@ -67,6 +67,28 @@ spec:
           value: 1800
           metricMethodRef:
             systemName: echo_no_params
+  policies:
+    - name: cors
+      version: builtin
+      configuration:
+        allow_credentials: true
+        allow_headers:
+          - user_key
+        allow_methods:
+          - GET
+          - OPTIONS
+        allow_origin: "*"
+      enabled: true
+    - name: apicast
+      version: builtin
+      configuration: {}
+      enabled: true
+  deployment:
+    apicastHosted:
+      authentication:
+        userkey:
+          authUserKey: user_key
+          credentials: headers
   backendUsages:
     echo_api_backend:
       path: /
