@@ -3,21 +3,70 @@ kind: Product
 metadata:
   name: echo-api-product-sample
 spec:
-  applicationPlans:
-    plan_basic:
-      limits:
-        - metricMethodRef:
-            systemName: hits
-          period: day
-          value: 30
-      name: Basic
-    plan_unlimited:
-      name: Unlimited
-  providerAccountRef:
-    name: tenant-secret
   name: Operated Product Echo API
   systemName: echo_api_product
   description: Echo API Product
+  providerAccountRef:
+    name: tenant-secret
+  mappingRules:
+    - httpMethod: GET
+      pattern: "/{echo}$"
+      metricMethodRef: echo_with_params
+      increment: 1
+      last: false
+    - httpMethod: GET
+      pattern: "/$"
+      metricMethodRef: echo_no_params
+      increment: 1
+      last: false
+  methods:
+    echo_with_params:
+      friendlyName: echo_with_params
+      description: Echo API with parameters
+    echo_no_params:
+      friendlyName: echo_no_params
+      description: Echo API with no parameters
+  applicationPlans:
+    basic_plan:
+      name: Basic
+      appsRequireApproval: true
+      published: true
+      limits:
+        - period: minute
+          value: 20
+          metricMethodRef:
+            systemName: echo_with_params
+        - period: minute
+          value: 20
+          metricMethodRef:
+            systemName: echo_no_params
+    premium_plan:
+      name: Premium
+      appsRequireApproval: false
+      published: true
+      trialPeriod: 0
+      setupFee: 0.0
+      costMonth: 5.0
+      pricingRules:
+        - from: 1
+          to: 200
+          pricePerUnit: 0.05
+          metricMethodRef:
+            systemName: echo_with_params
+        - from: 201
+          to:
+          pricePerUnit: 0.01
+          metricMethodRef:
+            systemName: echo_with_params
+      limits:
+        - period: minute
+          value: 1800
+          metricMethodRef:
+            systemName: echo_with_params
+        - period: minute
+          value: 1800
+          metricMethodRef:
+            systemName: echo_no_params
   backendUsages:
     echo_api_backend:
       path: /
