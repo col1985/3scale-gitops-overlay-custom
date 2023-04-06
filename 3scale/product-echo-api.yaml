@@ -67,6 +67,28 @@ spec:
           value: 1800
           metricMethodRef:
             systemName: echo_no_params
+    policies:
+      - name: cors
+        version: builtin
+        configuration:
+          allow_credentials: true
+          allow_headers:
+            - user_key
+          allow_methods:
+            - GET
+            - OPTIONS
+          allow_origin: "*"
+        enabled: true
+      - name: apicast
+        version: builtin
+        configuration: {}
+        enabled: true
+  deployment:
+    apicastHosted:
+      authentication:
+        userkey:
+          authUserKey: user_key
+          credentials: headers
   backendUsages:
     echo_api_backend:
       path: /
