@@ -12,5 +12,6 @@ spec:
     repoURL: https://github.com/jeanNyil/3scale-gitops.git
     targetRevision: dev
   syncPolicy:
+    # Disable the ApplyOutOfSyncOnly option to make sure the ProxyConfigPromote CR is always applied
     syncOptions:
-    - ApplyOutOfSyncOnly=true
+    - ApplyOutOfSyncOnly=false
