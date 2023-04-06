@@ -4,8 +4,6 @@ metadata:
   name: proxyconfigpromote-echo-api
   namespace: threescale-development
 spec:
-  ProductCRName: product1-sample
-  Production: true
   productCRName: echo-api-product-sample
   production: true
   deleteCR: false
