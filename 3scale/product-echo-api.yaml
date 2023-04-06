@@ -33,7 +33,7 @@ spec:
       published: true
       limits:
         - period: minute
-          value: 20
+          value: 30
           metricMethodRef:
             systemName: echo_with_params
         - period: minute
