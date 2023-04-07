@@ -41,7 +41,7 @@ spec:
       friendlyName: status-404
       unit: count
       description: Number of 404 HTTP return codes from the upstream backend
-    status-429:
+    status-500:
       friendlyName: status-500
       unit: count
       description: Number of 500 HTTP return codes from the upstream backend
