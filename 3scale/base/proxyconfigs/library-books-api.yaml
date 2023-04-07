@@ -1,8 +1,8 @@
 apiVersion: capabilities.3scale.net/v1beta1
 kind: ProxyConfigPromote
 metadata:
-  name: proxyconfigpromote-echo-api
+  name: library-books-api
 spec:
-  productCRName: echo-api-product-sample
+  productCRName: library-books-api
   production: true
   deleteCR: false

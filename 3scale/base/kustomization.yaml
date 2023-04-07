@@ -3,5 +3,7 @@ kind: Kustomization
 metadata:
     name: 3scale
 resources:
-- products/customer.yaml
-- backends/customer-order.yaml
+- backends/books-api-v1.yaml
+- products/library-books-api.yaml
+- activedocs/library-books-api.yaml
+- proxyconfig/promote-books-api.yaml
