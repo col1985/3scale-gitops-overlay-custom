@@ -90,7 +90,7 @@ spec:
         metricMethodRef:
           systemName: get-books-v2
     v2-premium:
-      name: v1-premium
+      name: v2-premium
       appsRequireApproval: true
       trialPeriod: 0
       setupFee: '15.00'
