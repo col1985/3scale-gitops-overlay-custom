@@ -42,7 +42,7 @@ spec:
         value: 5
         metricMethodRef:
           systemName: get-books-v1
-      - period: minute
+      - period: eternity
         value: 0
         metricMethodRef:
           systemName: get-books-v2
@@ -69,7 +69,7 @@ spec:
         value: 1200
         metricMethodRef:
           systemName: get-books-v1
-      - period: minute
+      - period: eternity
         value: 0
         metricMethodRef:
           systemName: get-books-v2
@@ -81,7 +81,7 @@ spec:
       costMonth: '0.00'
       published: true
       limits:
-      - period: minute
+      - period: eternity
         value: 0
         metricMethodRef:
           systemName: get-books-v1
@@ -108,7 +108,7 @@ spec:
         metricMethodRef:
           systemName: get-books-v2
       limits:
-      - period: minute
+      - period: eternity
         value: 0
         metricMethodRef:
           systemName: get-books-v1
