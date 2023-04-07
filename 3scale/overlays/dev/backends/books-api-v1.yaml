@@ -6,6 +6,3 @@ spec:
   name: books-api-v1 Backend
   systemName: books-api-v1-backend
   privateBaseURL: http://books-api-v1.library-dev.svc.cluster.local:80/api/v1
-  description: 'Manages a library books inventory (v1)'
-  providerAccountRef:
-    name: tenant-secret

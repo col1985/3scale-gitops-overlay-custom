@@ -1,0 +1,123 @@
+apiVersion: capabilities.3scale.net/v1beta1
+kind: Product
+metadata:
+  name: library-books-api
+spec:
+  name: Library Books API
+  systemName: library-books-api
+  deployment:
+    apicastHosted:
+      authentication:
+        oidc:
+          issuerType: keycloak
+          issuerEndpoint: https://threescale-zync:Y7UvouyAn5AE1rUSLDtbyyJ7vzc8ng51@sso.apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/auth/realms/demo-dev
+  mappingRules:
+    - httpMethod: GET
+      pattern: "/v1/books$"
+      metricMethodRef: get-books-v1
+      increment: 1
+      last: false
+    - httpMethod: GET
+      pattern: "/v2/books$"
+      metricMethodRef: get-books-v2
+      increment: 1
+      last: false
+  methods:
+    get-books-v1:
+      friendlyName: getBooks-v1
+      description: 'List All Books-v1'
+    get-books-v2:
+      friendlyName: getBooks-v2
+      description: 'List All Books-v2'
+  applicationPlans:
+    v1-basic:
+      name: v1-basic
+      appsRequireApproval: true
+      trialPeriod: 0
+      setupFee: '0.00'
+      costMonth: '0.00'
+      published: true
+      limits:
+      - period: minute
+        value: 5
+        metricMethodRef:
+          systemName: get-books-v1
+      - period: minute
+        value: 0
+        metricMethodRef:
+          systemName: get-books-v2
+    v1-premium:
+      name: v1-premium
+      appsRequireApproval: true
+      trialPeriod: 0
+      setupFee: '15.00'
+      costMonth: '5.00'
+      published: true
+      pricingRules:
+      - from: 1
+        to: 200
+        pricePerUnit: '0.05'
+        metricMethodRef:
+          systemName: get-books-v1
+      - from: 201
+        to: 10000
+        pricePerUnit: '0.01'
+        metricMethodRef:
+          systemName: get-books-v1
+      limits:
+      - period: minute
+        value: 1200
+        metricMethodRef:
+          systemName: get-books-v1
+      - period: minute
+        value: 0
+        metricMethodRef:
+          systemName: get-books-v2
+    v2-basic:
+      name: v2-basic
+      appsRequireApproval: true
+      trialPeriod: 0
+      setupFee: '0.00'
+      costMonth: '0.00'
+      published: true
+      limits:
+      - period: minute
+        value: 0
+        metricMethodRef:
+          systemName: get-books-v1
+      - period: minute
+        value: 5
+        metricMethodRef:
+          systemName: get-books-v2
+    v2-premium:
+      name: v1-premium
+      appsRequireApproval: true
+      trialPeriod: 0
+      setupFee: '15.00'
+      costMonth: '5.00'
+      published: true
+      pricingRules:
+      - from: 1
+        to: 200
+        pricePerUnit: '0.05'
+        metricMethodRef:
+          systemName: get-books-v2
+      - from: 201
+        to: 10000
+        pricePerUnit: '0.01'
+        metricMethodRef:
+          systemName: get-books-v2
+      limits:
+      - period: minute
+        value: 0
+        metricMethodRef:
+          systemName: get-books-v1
+      - period: minute
+        value: 1200
+        metricMethodRef:
+          systemName: get-books-v2
+  backendUsages:
+    books-api-v1-backend:
+      path: "/v1"
+    books-api-v2-backend:
+      path: "/v2"
