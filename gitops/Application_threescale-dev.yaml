@@ -8,9 +8,9 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: 3scale/
+    path: 3scale/overlays/dev
     repoURL: https://github.com/jeanNyil/3scale-gitops.git
-    targetRevision: dev
+    targetRevision: HEAD
   syncPolicy:
     # Disable the ApplyOutOfSyncOnly option to make sure the ProxyConfigPromote CR is always applied
     syncOptions:
