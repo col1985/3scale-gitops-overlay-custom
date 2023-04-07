@@ -11,3 +11,4 @@ spec:
   name: Operated ActiveDoc From URL
   productSystemName: library-books-api
   published: true
+  systemName: librarybooksapi

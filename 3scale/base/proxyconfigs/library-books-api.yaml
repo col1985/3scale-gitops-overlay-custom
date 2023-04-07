@@ -5,4 +5,3 @@ metadata:
 spec:
   productCRName: library-books-api
   production: true
-  deleteCR: false
