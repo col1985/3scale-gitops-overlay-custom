@@ -6,3 +6,5 @@ resources:
 - ../../base
 patchesStrategicMerge:
 - backends/books-api-v1.yaml
+- products/library-books-api.yaml
+- activedocs/library-books-api.yaml

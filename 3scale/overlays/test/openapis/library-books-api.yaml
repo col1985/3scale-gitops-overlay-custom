@@ -97,3 +97,16 @@ components:
                     copies: 3
                     title: Pride and Prejudice
                     year: 1813
+    securitySchemes:
+        oidc:
+            flows:
+                clientCredentials:
+                    tokenUrl: >-
+                        https://sso.apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/auth/realms/demo-test/protocol/openid-connect/token
+                    scopes:
+                        openid: OpenID Connect Protocol
+            type: oauth2
+            description: OpenID Connect
+security:
+    -
+        oidc: []

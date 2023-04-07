@@ -11,9 +11,16 @@ spec:
   deployment:
     apicastHosted:
       authentication:
-        appKeyAppID:
-          appID: app_id
-          appKey: app_key
+        oidc:
+          issuerType: keycloak
+          issuerEndpoint: https://threescale-zync:JFNaTEnwxlsJHLFLbp9tSh2DynM2GdoK@sso.apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/auth/realms/demo-prod
+          jwtClaimWithClientID: azp
+          jwtClaimWithClientIDType: plain
+          authenticationFlow:
+            standardFlowEnabled: false
+            implicitFlowEnabled: false
+            serviceAccountsEnabled: true
+            directAccessGrantsEnabled: false
           credentials: headers
   mappingRules:
     - httpMethod: GET
@@ -26,6 +33,18 @@ spec:
       friendlyName: Hits
       unit: hit
       description: Number of API hits
+    status-200:
+      friendlyName: status-200
+      unit: count
+      description: Number of 200 HTTP return codes from the upstream backend
+    status-404:
+      friendlyName: status-404
+      unit: count
+      description: Number of 404 HTTP return codes from the upstream backend
+    status-429:
+      friendlyName: status-500
+      unit: count
+      description: Number of 500 HTTP return codes from the upstream backend
   methods:
     get-books-v1:
       friendlyName: getBooks-v1
@@ -36,8 +55,7 @@ spec:
       configuration:
         allow_credentials: true
         allow_headers:
-        - app_id
-        - app_key
+        - Authorization
         allow_methods:
         - GET
         - OPTIONS
@@ -49,7 +67,32 @@ spec:
         condition:
           combine_op: and
         enable_access_logs: true
-        custom_logging: '[{{time_local}}] [source ip: "{{headers[''x-forwarded-for'']}}"] [local: {{host}}:{{server_port}}] [remote: {{remote_addr}}:{{remote_port}}] [app_id: "{{credentials.app_id}}"] [request: "{{request}}" to service [service id: {{service.id}}, service name: {{service.system_name}}] - status: {{status}} - body bytes sent: {{body_bytes_sent}} - request time: {{request_time}} - post action impact: {{post_action_impact}}]'
+        custom_logging: '[{{time_local}}] [source ip: "{{headers[''x-forwarded-for'']}}"] [local: {{host}}:{{server_port}}] [remote: {{remote_addr}}:{{remote_port}}] [client Id: "{{jwt.clientId}}"] [request: "{{request}}" to service [service id: {{service.id}}, service name: {{service.system_name}}] - status: {{status}} - body bytes sent: {{body_bytes_sent}} - request time: {{request_time}} - post action impact: {{post_action_impact}}]'
+      enabled: true
+    - name: custom_metrics
+      version: builtin
+      configuration:
+        rules:
+        - increment: '1'
+          metric: status-{{status}}
+          condition:
+            operations:
+            - left_type: liquid
+              right_type: plain
+              op: "=="
+              right: '200'
+              left: "{{status}}"
+            - left_type: liquid
+              right_type: plain
+              op: "=="
+              right: '404'
+              left: "{{status}}"
+            - left_type: liquid
+              right_type: plain
+              op: "=="
+              right: '500'
+              left: "{{status}}"
+            combine_op: or
       enabled: true
     - name: apicast
       version: builtin
