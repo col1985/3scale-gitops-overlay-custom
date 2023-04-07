@@ -6,4 +6,4 @@ spec:
   activeDocOpenAPIRef:
     url: >-
       https://raw.githubusercontent.com/jeanNyil/3scale-gitops/main/3scale/overlays/test/openapis/library-books-api.yaml
-  name: Library Books API (v1)
+  name: Library Books API (v2)
