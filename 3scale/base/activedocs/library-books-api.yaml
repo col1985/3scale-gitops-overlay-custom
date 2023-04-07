@@ -8,7 +8,7 @@ spec:
   activeDocOpenAPIRef:
     url: >-
       https://raw.githubusercontent.com/jeanNyil/3scale-gitops/main/3scale/base/openapis/library-books-api.yaml
-  name: Operated ActiveDoc From URL
+  name: Library Books API (v1)
   productSystemName: library-books-api
   published: true
   systemName: librarybooksapi
