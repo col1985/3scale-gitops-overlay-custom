@@ -1,8 +1,6 @@
 apiVersion: capabilities.3scale.net/v1beta1
 kind: Product
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "0"
   name: library-books-api
 spec:
   name: Library Books API
