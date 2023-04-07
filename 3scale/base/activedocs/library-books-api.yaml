@@ -7,7 +7,7 @@ spec:
     name: tenant-secret
   activeDocOpenAPIRef:
     url: >-
-      https://github.com/jeanNyil/3scale-gitops/blob/dev/3scale/base/openapis/library-books-api.yaml
+      https://raw.githubusercontent.com/jeanNyil/3scale-gitops/main/3scale/base/openapis/library-books-api.yaml
   name: Operated ActiveDoc From URL
   productSystemName: library-books-api
   published: true
