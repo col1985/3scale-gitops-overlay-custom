@@ -63,7 +63,6 @@ spec:
       setupFee: '0.00'
       costMonth: '0.00'
       published: true
-      pricingRules: []
       limits:
       - period: minute
         value: 5
