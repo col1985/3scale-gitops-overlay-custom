@@ -36,7 +36,7 @@ spec:
       trialPeriod: 0
       setupFee: '0.00'
       costMonth: '0.00'
-      published: true
+      published: false
       limits:
       - period: minute
         value: 5
@@ -52,7 +52,7 @@ spec:
       trialPeriod: 0
       setupFee: '15.00'
       costMonth: '5.00'
-      published: true
+      published: false
       pricingRules:
       - from: 1
         to: 200
