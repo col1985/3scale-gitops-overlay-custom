@@ -8,7 +8,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: 3scale/overlays/dev
+    path: 3scale/library-books-api/overlays/dev
     repoURL: https://github.com/jeanNyil/3scale-gitops.git
     targetRevision: HEAD
   syncPolicy:
