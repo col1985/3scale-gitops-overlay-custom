@@ -14,11 +14,6 @@ spec:
   applicationPlans:
     v2-basic:
       name: v2-basic
-      appsRequireApproval: true
-      trialPeriod: 0
-      setupFee: '0.00'
-      costMonth: '0.00'
-      published: true
       limits:
       - period: eternity
         value: 0
