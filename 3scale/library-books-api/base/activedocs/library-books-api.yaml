@@ -9,8 +9,8 @@ spec:
     name: tenant-secret
   activeDocOpenAPIRef:
     url: >-
-      https://raw.githubusercontent.com/jeanNyil/3scale-gitops/main/3scale/overlays/prod/openapis/library-books-api.yaml
-  name: Library Books API (v1)
+      https://raw.githubusercontent.com/jeanNyil/3scale-gitops/main/3scale/library-books-api/overlays/prod/openapis/library-books-api.yaml
+  name: Library Books API (v2)
   productSystemName: library-books-api
   published: true
   systemName: librarybooksapi
