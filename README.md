@@ -43,7 +43,7 @@ oc apply -f 3scale/tenants/tenant-password-secret.yaml
 ## Create Tenants in different projects
 We will be creating 3 different tenants (development, testing and production) in 3 different projects.
 ### Development Tenant
-Create the development project on your OCP cluster
+Create the `threescale-development` project on your OCP cluster
 ```
 oc apply -f 3scale/namespaces/development-namespace.yaml
 ```
@@ -53,14 +53,14 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
+sed 's/apps.*com/apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
 ```
-Create the tenant
+Create the `development` tenant
 ```
 oc apply -f 3scale/tenants/tenant-development.yaml
 ```
 ### Testing Tenant
-Create the testing project on your OCP cluster
+Create the `threescale-testing` project on your OCP cluster
 ```
 oc apply -f 3scale/namespaces/testing-namespace.yaml
 ```
@@ -70,15 +70,15 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
+sed 's/apps.*com/apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
 ```
-Create the tenant
+Create the `testing` tenant
 ```
 oc apply -f 3scale/tenants/tenant-testing.yaml
 ```
 
 ### Production Tenant
-Create the production project on your OCP cluster
+Create the `threescale-production` project on your OCP cluster
 ```
 oc apply -f 3scale/namespaces/production-namespace.yaml
 ```
@@ -88,21 +88,23 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
+sed 's/apps.*com/apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
 ```
-Create the tenant
+Create the `production` tenant
 ```
 oc apply -f 3scale/tenants/tenant-production.yaml
 ```
 
 
 ## Enabling RBAC
-Create cluster role to create, update, delete 3scale CRs (Should have OCP admin access for this)
+Create cluster role to create, update, delete 3scale CRs 
+
+> **NOTE:** OpenShift cluster-admin privilege is required.
 
 ```
 oc apply -f rbac/ClusterRole_gitops-threescale-access.yaml
 ```
-Assign the cluster role to sa `openshift-gitops-argocd-application-controller` in all the projects where the tenants are installed for the gitops application to apply configurations to the different tenants in different projects
+Assign the cluster role to the  `openshift-gitops-argocd-application-controller` service account in all of the projects where the 3scale tenants are deployed so that the ArgoCD Application can apply the desired configurations:
 
 ```
 oc adm policy add-role-to-user gitops-threescale-access system:serviceaccount:openshift-gitops:openshift-gitops-argocd-application-controller -n threescale-development
@@ -118,10 +120,12 @@ oc adm policy add-role-to-user gitops-threescale-access system:serviceaccount:op
 
 Configure the repositories to be connected by the ArgoCD application 
 
-Click `Manage your repositories, projects, settings` icon on the left panel of the ArgoCD console, Click 
-`Repositories` and Click either `Connect repo using SSH` OR `Connect repo using HTTPS` and fill in the form as shown below and click `CONNECT`. Make sure it is SUCCESSFUL.
-
 ![](images/gitops-connectrepo.png)
+
+1. Click `Manage your repositories, projects, settings` icon on the left panel of the ArgoCD console
+2. Click 
+`Repositories`
+3. Click either `Connect repo using SSH` OR `Connect repo using HTTPS` and fill in the form as shown below and click `CONNECT`. Make sure it is SUCCESSFUL.
 
 ## Create ArgoCD Application
  
@@ -136,9 +140,10 @@ oc apply -f gitops/Application_threescale-test.yaml -n openshift-gitops
 ```
 oc apply -f gitops/Application_threescale-prod.yaml -n openshift-gitops
 ```
-Three ArgoCD application `threescale-dev` , `threescale-test` and `threescale-prod`are created.
+Three ArgoCD applications (`threescale-dev` , `threescale-test` and `threescale-prod`) are created.
 
 ## 3scale CRs
+
 3scale CRs required for this tutorial are 3scale/backend-echo-api.yaml and 3scale/product-echo-api.yaml
 
 ## GitOps in action
