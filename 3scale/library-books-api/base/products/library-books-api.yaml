@@ -13,7 +13,7 @@ spec:
       authentication:
         oidc:
           issuerType: keycloak
-          issuerEndpoint: https://threescale-zync:JFNaTEnwxlsJHLFLbp9tSh2DynM2GdoK@sso.apps.cluster-9pmvg.9pmvg.sandbox3187.opentlc.com/auth/realms/demo-prod
+          issuerEndpoint: https://threescale-zync:JFNaTEnwxlsJHLFLbp9tSh2DynM2GdoK@sso.apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/auth/realms/demo-prod
           jwtClaimWithClientID: azp
           jwtClaimWithClientIDType: plain
           authenticationFlow:
