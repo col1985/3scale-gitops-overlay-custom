@@ -144,6 +144,8 @@ Three ArgoCD applications (`threescale-dev` , `threescale-test` and `threescale-
 
 ## 3scale CRs
 
+> **TO COMPLETE**
+
 3scale CRs required for this tutorial are 3scale/backend-echo-api.yaml and 3scale/product-echo-api.yaml
 
 ## GitOps in action
