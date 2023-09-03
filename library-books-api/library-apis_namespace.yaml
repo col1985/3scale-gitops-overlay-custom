@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations:
+    openshift.io/description: ""
+    openshift.io/display-name: Library APIs
+  labels:
+    kubernetes.io/metadata.name: sso-server
+  name: library-apis
+spec: {}
