@@ -266,7 +266,7 @@ The `threescale-dev` app should be out of sync after the refresh.
 `SYNC` and `SYNCHRONIZE` the app. 
 ![](images/dev-gitops-sync.png)
 
-The `v2-basic` plan Rate Limit Changes should now be reflected in development tenant
+The `v2-basic` plan Rate Limit Changes should now be reflected in the development tenant
 
 ![](images/3scale-rate-limit-modified.png)
 
@@ -283,7 +283,7 @@ The `threescale-test` app should be out of sync after the `Refresh`.
 
 ![](images/test-out-of-sync.png)
 
-`SYNC` and `SYNCHRONIZE` the app. The Product Name and Rate Limit Changes should now be reflected  in testing tenant
+`SYNC` and `SYNCHRONIZE` the app. The `v2-basic` plan Rate Limit Changes should now be reflected in the testing tenant.
 
 ### GitOps in Action Part 3 - Pushing Changes To The Prod Environment
 Finally after your testing is done you can similary promote the changes to the production environment.
@@ -297,5 +297,4 @@ git push -v -u origin
 The `threescale-prod` app should be out of sync after the `Refresh`.
 ![](images/prod-out-of-sync.png)
 
-`SYNC` and `SYNCHRONIZE` the app. The Product Name and Rate Limit Changes should now be reflected  in production tenant
-
+`SYNC` and `SYNCHRONIZE` the app. The `v2-basic` plan Rate Limit Changes should now be reflected in the production tenant.
