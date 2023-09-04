@@ -144,16 +144,22 @@ Three ArgoCD applications (`threescale-dev` , `threescale-test` and `threescale-
 
 ## Deploy the _Library Books API_ backend services
 
-1. Create the `library-apis` namespace:
+1. Create the `library-apis-dev`, `library-apis-test` and `library-apis` namespaces:
     ```
-    oc apply -f library-books-api/library-apis_namespace.yaml
+    oc apply -f library-books-api/library-apis_namespaces.yaml
     ```
 2. Deploy the two versions of the _Library Books API_ to be secured by 3scale:
     ```
-    oc apply -f library-books-api/books-api-v1.yaml
+    oc -n library-apis-dev apply -f library-books-api/books-api-v1.yaml
+    oc -n library-apis-dev apply -f library-books-api/books-api-v2.yaml
     ```
     ```
-    oc apply -f library-books-api/books-api-v2.yaml
+    oc -n library-apis-test apply -f library-books-api/books-api-v1.yaml
+    oc -n library-apis-test apply -f library-books-api/books-api-v2.yaml
+    ```
+    ```
+    oc -n library-apis apply -f library-books-api/books-api-v1.yaml
+    oc -n library-apis apply -f library-books-api/books-api-v2.yaml
     ```
 
 ## 3scale CRs
