@@ -4,7 +4,7 @@ The following tutorial provide steps on leveraging GitOps to configure 3scale us
 3scale CRs (Product, Backend CRs etc.)
 
 ## Prerequisites
-- OpenShift 4.10 and above
+- [Red Hat OpenShift v4.10+](https://access.redhat.com/products/openshift/)
 - Install 3scale operator from OperatorHub in all namespaces. We do this to set up the different tenants in different namespaces instead of them being in the same namespace as the master installation. 
 ![](images/3scale-operator.png)
 - Follow the 3scale installation section in this guide to install 3scale using APIManager CR (https://rpscodes.github.io/OpenShift-Service-Mesh-and-3scale-API-Management-Integration/rhs-openshift-starter-guides/4/02-3scale-installation.html?&CLUSTER_WILDCARD_URL=)
@@ -177,7 +177,7 @@ You should only have the default `API`under the products menu. In subsequent ste
 ![](images/default-api.png)
 
 
-The GitOps application is configured to synch manually. But, it can be changed to sync automatically i.e. changes committed to git repo are automatically applied to 3scale.
+The GitOps application is configured to sync manually. But, it can be changed to sync automatically i.e. changes committed to git repo are automatically applied to 3scale.
 
 Go to the GitOps console using the route URL it creates as `openshift-gitops-server` in `openshift-gitops` namespace.
 
@@ -195,7 +195,7 @@ Find the password for the admin in `openshift-gitops-cluster` secret in `openshi
 
 Click `Manage Application` icon on the left panel of the ArgoCD console. You will then see 3 applications for the three 3scale tenants. 
 
-Let's first work at the development tenant which is managed by the `threescale-dev` application as shown below
+Let's first work with the development tenant which is managed by the `threescale-dev` application as shown below
 
 ![](images/gitops-apps.png)
 
@@ -203,21 +203,19 @@ Click `SYNC` and `SYNCHRONIZE` as shown below to synch the 3scale CRs
 
 ![](images/gitops-sync.png)
 
-Once synched then the application should look as below
+Once synced then the application should look as below
 
 ![](images/gitops-synced.png)
 
-Go to 3scale Admin console of the development tenant and observe that the `Library Books API` product, the `books-api-v1 Backend` backend and `books-api-v2 Backend` backend are configured as shown below (refresh the browser if you can't see it automatically)
+Go to the 3scale Admin Portal of the development tenant and observe that the `Library Books API` product, the `books-api-v1 Backend` backend and `books-api-v2 Backend` backend are configured as shown below (refresh the browser if you can't see it automatically)
 
 ![](images/3scale-dev-created.png)
 
-Repeat the `SYNC` and `SYNCHRONIZE` steps for the `threescale-test` and `threescale-prod` applications and the see the changes reflected in the respective tenants. 
+Repeat the `SYNC` and `SYNCHRONIZE` steps for the `threescale-test` and `threescale-prod` applications, **sequentially**, and then verify that the changes are reflected in the respective tenants. 
 
-### ### GitOps in Action Part 1 - Pushing Changes to the Dev Environment
+### GitOps in Action Part 1 - Pushing Changes to the Dev Environment
 
-**TO COMPLETE**
-
-Now lets try making the changes to the product CR. For example let's try to increase the `v2-basic` plan rate limits of the product we created in the development environment.
+Now, let's try to modify the product CR. For example, let's increase the `get-books-v2` operation rate limits on the `v2-basic` plan in the development environment.
 
 We will be leveraging [kustomize](https://kustomize.io/) overlays in order to promote changes across the development, testing and production environments.
 
@@ -239,10 +237,12 @@ Add the following snipet to the [dev product overlay](./3scale/library-books-api
 ```
 
 - `v2-basic` plan rate limits in the product base
-![](images/product-before.png)
+
+  ![](images/product-before.png)
 
 - `v2-basic` plan rate limits that will be applied and merged using the dev overlay
-![](images/product-after.png)
+
+  ![](images/product-after.png)
 
 Commit and Push the changes
 
@@ -261,9 +261,11 @@ Navigate to the Gitops console and refresh the `threescale-dev` app.
 ![](images/gitops-apps-refresh.png)
 
 The `threescale-dev` app should be out of sync after the refresh.
+
 ![](images/dev-out-of-sync.png)
 
 `SYNC` and `SYNCHRONIZE` the app. 
+
 ![](images/dev-gitops-sync.png)
 
 The `v2-basic` plan Rate Limit Changes should now be reflected in the development tenant
@@ -271,7 +273,10 @@ The `v2-basic` plan Rate Limit Changes should now be reflected in the developmen
 ![](images/3scale-rate-limit-modified.png)
 
 ### GitOps in Action Part 2 - Pushing Changes To The Test Environment
+
 Subsequently after development is done, we can repeat the same steps with the testing overlay in order to promote the changes to the testing environment.
+
+After applying the changes in the [test product overlay](./3scale/library-books-api/overlays/test/products/library-books-api.yaml), commit and push the changes.
 
 ```
 git add 3scale/library-books-api/overlays/test/products/library-books-api.yaml
@@ -286,7 +291,10 @@ The `threescale-test` app should be out of sync after the `Refresh`.
 `SYNC` and `SYNCHRONIZE` the app. The `v2-basic` plan Rate Limit Changes should now be reflected in the testing tenant.
 
 ### GitOps in Action Part 3 - Pushing Changes To The Prod Environment
+
 Finally after your testing is done you can similary promote the changes to the production environment.
+
+After applying the changes in the [prod product overlay](./3scale/library-books-api/overlays/prod/products/library-books-api.yaml), commit and push the changes.
 
 ```
 git add 3scale/library-books-api/overlays/prod/products/library-books-api.yaml
@@ -295,6 +303,7 @@ git push -v -u origin
 ```
 
 The `threescale-prod` app should be out of sync after the `Refresh`.
+
 ![](images/prod-out-of-sync.png)
 
 `SYNC` and `SYNCHRONIZE` the app. The `v2-basic` plan Rate Limit Changes should now be reflected in the production tenant.
