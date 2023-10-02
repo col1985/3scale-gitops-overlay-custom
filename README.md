@@ -3,6 +3,8 @@
 The following tutorial provide steps on leveraging GitOps to configure 3scale using 
 3scale CRs (Product, Backend CRs etc.)
 
+Instructions are inspired from the [https://github.com/jbossdemocentral/3scale-gitops](https://github.com/jbossdemocentral/3scale-gitops) repository. Additionally, the GitOps approach is implemented using [Red Hat OpenShift GitOps](https://docs.openshift.com/gitops/1.10/understanding_openshift_gitops/about-redhat-openshift-gitops.html) with [kustomize](https://kustomize.io/).
+
 ## Prerequisites
 - [Red Hat OpenShift v4.10+](https://access.redhat.com/products/openshift/)
 - Install 3scale operator from OperatorHub in all namespaces. We do this to set up the different tenants in different namespaces instead of them being in the same namespace as the master installation. 
@@ -53,7 +55,7 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
+sed 's/apps.*com/apps.cluster-tpbfg.tpbfg.sandbox318.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
 ```
 Create the `development` tenant
 ```
@@ -71,7 +73,7 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
+sed 's/apps.*com/apps.cluster-tpbfg.tpbfg.sandbox318.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
 ```
 Create the `testing` tenant
 ```
@@ -89,7 +91,7 @@ sed 's/apps.*com/<Replace with your cluster domain URl>/g' 3scale/tenants/tenant
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-6nk4t.6nk4t.sandbox2675.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
+sed 's/apps.*com/apps.cluster-tpbfg.tpbfg.sandbox318.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
 ```
 Create the `production` tenant
 ```
