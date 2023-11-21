@@ -122,12 +122,12 @@ oc adm policy add-role-to-user gitops-threescale-access system:serviceaccount:op
 
 Configure the repositories to be connected by the ArgoCD application 
 
-![](images/gitops-connectrepo.png)
-
 1. Click `Manage your repositories, projects, settings` icon on the left panel of the ArgoCD console
 2. Click 
 `Repositories`
 3. Click either `Connect repo using SSH` OR `Connect repo using HTTPS` and fill in the form as shown below and click `CONNECT`. Make sure it is SUCCESSFUL.
+
+![](images/gitops-connectrepo.png)
 
 ## Create ArgoCD Application
  
