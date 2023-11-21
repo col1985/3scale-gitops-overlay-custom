@@ -6,7 +6,7 @@ info:
 servers:
     -
         url: >-
-            https://library-books-api-apim-demo-apicast-production.apps.cluster-tpbfg.tpbfg.sandbox318.opentlc.com
+            https://library-books-api-apim-demo-apicast-production.apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com
         description: Server URL
 paths:
     /v1/books:
@@ -173,7 +173,7 @@ components:
             flows:
                 clientCredentials:
                     tokenUrl: >-
-                        https://sso.apps.cluster-tpbfg.tpbfg.sandbox318.opentlc.com/auth/realms/demo-test/protocol/openid-connect/token
+                        https://sso.apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/auth/realms/demo-test/protocol/openid-connect/token
                     scopes:
                         openid: OpenID Connect Protocol
             type: oauth2
