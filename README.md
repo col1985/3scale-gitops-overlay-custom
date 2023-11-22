@@ -248,8 +248,8 @@ Add the following snipet to the [dev product overlay](./3scale/library-books-api
 
 Commit and Push the changes
 
-```
-git add .
+```script shell
+git add 3scale/library-books-api/overlays/dev/products/library-books-api.yaml
 ```
 ```
 git commit -m "Change v2-basic plan Rate Limits"
@@ -280,9 +280,13 @@ Subsequently after development is done, we can repeat the same steps with the te
 
 After applying the changes in the [test product overlay](./3scale/library-books-api/overlays/test/products/library-books-api.yaml), commit and push the changes.
 
-```
+```script shell
 git add 3scale/library-books-api/overlays/test/products/library-books-api.yaml
+```
+```script shell
 git commit -m "Promote v2-basic plan Rate Limits change to testing"
+```
+```script shell
 git push -v -u origin
 ```
 
@@ -298,9 +302,13 @@ Finally after your testing is done you can similary promote the changes to the p
 
 After applying the changes in the [prod product overlay](./3scale/library-books-api/overlays/prod/products/library-books-api.yaml), commit and push the changes.
 
-```
+```script shell
 git add 3scale/library-books-api/overlays/prod/products/library-books-api.yaml
+```
+```script shell
 git commit -m "Promote v2-basic plan Rate Limits change to production"
+```
+```script shell
 git push -v -u origin
 ```
 
