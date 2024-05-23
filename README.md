@@ -33,7 +33,7 @@ Find the password for the admin in `openshift-gitops-cluster` secret in `openshi
 ![](images/gitops-secret.png)
 
 ## Create password secret for tenant creation
-Create a secret which has the password that'll be used to login to the tenants. 3scale operator will use this secret to set up the login credentials of the tenants.
+Create a secret which holds the password that will be used to login to the tenants. The 3scale operator will use this secret to set up the login credentials of the tenants.
 ```
 oc project 3scale-amp
 ```
