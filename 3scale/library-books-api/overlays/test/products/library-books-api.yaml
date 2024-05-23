@@ -10,4 +10,4 @@ spec:
       authentication:
         oidc:
           issuerType: keycloak
-          issuerEndpoint: https://threescale-zync:lVFfLAAnlul3Wks25HiNPLqQzVZGAowP@sso.apps.ocp4.jnyilimb.eu/auth/realms/demo-test
+          issuerEndpoint: https://threescale-zync:lVFfLAAnlul3Wks25HiNPLqQzVZGAowP@sso.apps.ocp4.jnyilimb.eu/realms/demo-test
