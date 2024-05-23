@@ -37,7 +37,7 @@ metadata:
     app.kubernetes.io/name: books-api-v2
   name: books-api-v2-config
 data:
-  quarkus.jaeger.endpoint: http://jaeger-all-in-one-inmemory-collector.demo-observability.svc:14268/api/traces
+  quarkus.jaeger.endpoint: http://jaeger-es-collector.observability.svc:14268/api/traces
 ---
 apiVersion: apps/v1
 kind: Deployment
