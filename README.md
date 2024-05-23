@@ -55,7 +55,7 @@ sed 's/apps.*eu/<Replace with your OpenShift cluster application domain URI>/g' 
 ```
 Example
 ```
-sed 's/apps.*eu/apps.ocp4.jnyilimb.eu/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
+sed 's/apps.*eu/apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
 ```
 Create the `development` tenant
 ```
@@ -73,7 +73,7 @@ sed 's/apps.*eu/<Replace with your OpenShift cluster application domain URI>/g' 
 ```
 Example
 ```
-sed 's/apps.*eu/apps.ocp4.jnyilimb.eu/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
+sed 's/apps.*eu/apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
 ```
 Create the `testing` tenant
 ```
@@ -91,7 +91,7 @@ sed 's/apps.*eu/<Replace with your OpenShift cluster application domain URI>/g' 
 ```
 Example
 ```
-sed 's/apps.*eu/apps.ocp4.jnyilimb.eu/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
+sed 's/apps.*eu/apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
 ```
 Create the `production` tenant
 ```
@@ -104,7 +104,7 @@ Create cluster role to create, update, delete 3scale CRs
 > **NOTE:** OpenShift cluster-admin privilege is required.
 
 ```
-oc apply -f rbac/ClusterRole_gitops-threescale-access.yaml
+oc apply -f rbac/gitops-threescale-access_clusterrole.yaml
 ```
 Assign the cluster role to the  `openshift-gitops-argocd-application-controller` service account in all of the projects where the 3scale tenants are deployed so that the ArgoCD Application can apply the desired configurations:
 
@@ -134,13 +134,13 @@ Configure the repositories to be connected by the ArgoCD application
 Create the ArgoCD Application for all the three environments/tenants. 
 
 ```
-oc apply -f gitops/Application_threescale-dev.yaml -n openshift-gitops
+oc apply -f gitops/application_threescale-dev.yaml -n openshift-gitops
 ```
 ```
-oc apply -f gitops/Application_threescale-test.yaml -n openshift-gitops
+oc apply -f gitops/application_threescale-test.yaml -n openshift-gitops
 ```
 ```
-oc apply -f gitops/Application_threescale-prod.yaml -n openshift-gitops
+oc apply -f gitops/application_threescale-prod.yaml -n openshift-gitops
 ```
 Three ArgoCD applications (`threescale-dev` , `threescale-test` and `threescale-prod`) are created.
 
