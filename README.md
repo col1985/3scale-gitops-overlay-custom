@@ -38,7 +38,7 @@ Create a secret which has the password that'll be used to login to the tenants. 
 oc project 3scale-amp
 ```
 ```
-oc apply -f 3scale/tenants/tenant-password-secret.yaml
+oc apply -f 3scale/tenants/tenant-admin-secret.yaml
 ```
 
 ## Create Tenants in different projects
@@ -51,11 +51,11 @@ oc apply -f 3scale/namespaces/development-namespace.yaml
 ```
 Edit the tenant CR to replace the placeholder openshift domain url with that of your cluster
 ```
-sed 's/apps.*com/<Replace with your OpenShift cluster application domain URI>/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
+sed 's/apps.*eu/<Replace with your OpenShift cluster application domain URI>/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
+sed 's/apps.*eu/apps.ocp4.jnyilimb.eu/g' 3scale/tenants/tenant-development.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-development.yaml
 ```
 Create the `development` tenant
 ```
@@ -69,11 +69,11 @@ oc apply -f 3scale/namespaces/testing-namespace.yaml
 ```
 Edit the tenant CR to replace the placeholder openshift domain url with that of your cluster
 ```
-sed 's/apps.*com/<Replace with your OpenShift cluster application domain URI>/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
+sed 's/apps.*eu/<Replace with your OpenShift cluster application domain URI>/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
+sed 's/apps.*eu/apps.ocp4.jnyilimb.eu/g' 3scale/tenants/tenant-testing.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-testing.yaml
 ```
 Create the `testing` tenant
 ```
@@ -87,11 +87,11 @@ oc apply -f 3scale/namespaces/production-namespace.yaml
 ```
 Edit the tenant CR to replace the placeholder openshift domain url with that of your cluster
 ```
-sed 's/apps.*com/<Replace with your OpenShift cluster application domain URI>/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
+sed 's/apps.*eu/<Replace with your OpenShift cluster application domain URI>/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
 ```
 Example
 ```
-sed 's/apps.*com/apps.cluster-8bcs7.8bcs7.sandbox2056.opentlc.com/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
+sed 's/apps.*eu/apps.ocp4.jnyilimb.eu/g' 3scale/tenants/tenant-production.yaml > temp.yml && mv temp.yml 3scale/tenants/tenant-production.yaml
 ```
 Create the `production` tenant
 ```
