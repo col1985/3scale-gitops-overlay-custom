@@ -173,7 +173,7 @@ components:
             flows:
                 clientCredentials:
                     tokenUrl: >-
-                        https://sso.apps.ocp4.jnyilimb.eu/realms/demo-prod/protocol/openid-connect/token
+                        https://sso-rhbk22.apps.ocp4.jnyilimb.eu/realms/demo-prod/protocol/openid-connect/token
                     scopes:
                         openid: OpenID Connect Protocol
             type: oauth2
