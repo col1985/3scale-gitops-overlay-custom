@@ -1,4 +1,12 @@
 ---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: test-developer-secret
+stringData:
+  password: openshift
+type: Opaque
+---
 kind: DeveloperUser
 apiVersion: capabilities.3scale.net/v1beta1
 metadata:
