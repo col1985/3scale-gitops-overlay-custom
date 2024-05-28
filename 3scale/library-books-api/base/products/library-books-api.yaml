@@ -74,12 +74,6 @@ spec:
       configuration:
         caching_type: resilient
       enabled: true
-    - name: 3scale_batcher
-      version: builtin
-      configuration:
-        batch_report_seconds: 10
-        auths_ttl: 30
-      enabled: true
     - name: logging
       version: builtin
       configuration:
