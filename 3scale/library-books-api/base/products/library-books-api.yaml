@@ -120,7 +120,7 @@ spec:
   applicationPlans:
     v1-basic:
       name: v1-basic
-      appsRequireApproval: true
+      appsRequireApproval: false
       trialPeriod: 0
       setupFee: '0.00'
       costMonth: '0.00'
@@ -163,7 +163,7 @@ spec:
           systemName: get-books-v2
     v2-basic:
       name: v2-basic
-      appsRequireApproval: true
+      appsRequireApproval: false
       trialPeriod: 0
       setupFee: '0.00'
       costMonth: '0.00'
