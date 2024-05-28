@@ -7,9 +7,20 @@ stringData:
   password: openshift
 type: Opaque
 ---
+kind: DeveloperAccount
+apiVersion: capabilities.3scale.net/v1beta1
+metadata:
+  name: test-developer-account
+spec:
+  orgName: Test Developer
+  providerAccountRef:
+    name: tenant-secret
+---
 kind: DeveloperUser
 apiVersion: capabilities.3scale.net/v1beta1
 metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
   name: test-developer-user
 spec:
   developerAccountRef:
@@ -21,15 +32,6 @@ spec:
     name: tenant-secret
   role: admin
   username: testdeveloper
----
-kind: DeveloperAccount
-apiVersion: capabilities.3scale.net/v1beta1
-metadata:
-  name: test-developer-account
-spec:
-  orgName: Test Developer
-  providerAccountRef:
-    name: tenant-secret
 ---
 kind: Application
 apiVersion: capabilities.3scale.net/v1beta1
