@@ -8,3 +8,4 @@ resources:
 - products/library-books-api.yaml
 - activedocs/library-books-api.yaml
 - proxyconfigs/library-books-api.yaml
+- test-resources/test-application.yaml

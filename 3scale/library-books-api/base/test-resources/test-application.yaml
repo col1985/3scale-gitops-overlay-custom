@@ -1,0 +1,40 @@
+---
+kind: DeveloperUser
+apiVersion: capabilities.3scale.net/v1beta1
+metadata:
+  name: test-developer-user
+spec:
+  developerAccountRef:
+    name: test-developer-account
+  email: testdeveloper@example.com
+  passwordCredentialsRef:
+    name: test-developer-secret
+  providerAccountRef:
+    name: tenant-secret
+  role: admin
+  username: testdeveloper
+---
+kind: DeveloperAccount
+apiVersion: capabilities.3scale.net/v1beta1
+metadata:
+  name: test-developer-account
+spec:
+  orgName: Test Developer
+  providerAccountRef:
+    name: tenant-secret
+---
+kind: Application
+apiVersion: capabilities.3scale.net/v1beta1
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: test-developer-app
+spec:
+  accountCR:
+    name: test-developer-account
+  applicationPlanName: v2-basic
+  description: 'Test Developer application for the Library Books API'
+  name: Test Developer's App
+  productCR:
+    name: library-books-api
+  suspend: false
