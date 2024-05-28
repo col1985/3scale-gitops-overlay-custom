@@ -38,12 +38,12 @@ apiVersion: capabilities.3scale.net/v1beta1
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  name: test-developer-app
+  name: test-account-application
 spec:
   accountCR:
-    name: test-developer-account
+    name: test-account
   applicationPlanName: v2-basic
-  description: 'Test Developer application for the Library Books API'
-  name: Test Developer's App
+  description: 'Test Account application for the Library Books API'
+  name: Test Account App
   productCR:
     name: library-books-api
