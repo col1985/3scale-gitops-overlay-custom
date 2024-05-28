@@ -47,4 +47,3 @@ spec:
   name: Test Developer's App
   productCR:
     name: library-books-api
-  suspend: false
