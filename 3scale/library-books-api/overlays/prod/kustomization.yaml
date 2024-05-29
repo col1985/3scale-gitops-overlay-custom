@@ -7,5 +7,5 @@ resources:
 patchesStrategicMerge:
 - backends/books-api-v1.yaml
 - backends/books-api-v2.yaml
-- products/library-books-api.yaml
+- products/oidc-authentication-endpoint.yaml
 - activedocs/library-books-api.yaml

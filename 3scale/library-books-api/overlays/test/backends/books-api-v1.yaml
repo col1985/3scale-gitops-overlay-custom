@@ -3,6 +3,4 @@ kind: Backend
 metadata:
   name: books-api-v1-backend
 spec:
-  name: books-api-v1 Backend
-  systemName: books-api-v1-backend
   privateBaseURL: http://books-api-v1.library-apis-test.svc.cluster.local:80/api/v1
