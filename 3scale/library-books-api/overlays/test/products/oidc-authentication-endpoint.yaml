@@ -3,6 +3,7 @@ kind: Product
 metadata:
   name: library-books-api
 spec:
+  name: Library Books API
   deployment:
     apicastHosted:
       authentication:
