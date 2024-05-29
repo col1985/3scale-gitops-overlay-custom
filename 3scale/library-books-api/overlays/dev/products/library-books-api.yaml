@@ -11,3 +11,15 @@ spec:
         oidc:
           issuerType: keycloak
           issuerEndpoint: https://threescale-zync:sMYhzikXthXaPRYihNoHcSKdq7GDGEXF@sso-rhbk22.apps.ocp4.jnyilimb.eu/realms/demo-dev
+  applicationPlans:
+    v2-basic:
+      name: v2-basic
+      limits:
+      - period: eternity
+        value: 0
+        metricMethodRef:
+          systemName: get-books-v1
+      - period: minute
+        value: 50
+        metricMethodRef:
+          systemName: get-books-v2
