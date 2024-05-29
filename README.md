@@ -217,71 +217,93 @@ Repeat the `SYNC` and `SYNCHRONIZE` steps for the `threescale-test` and `threesc
 
 ### GitOps in Action Part 1 - Pushing Changes to the Dev Environment
 
-Now, let's try to modify the product CR. For example, let's increase the `get-books-v2` operation rate limits on the `v2-basic` plan in the development environment.
+Now, let's try to modify the product CR. For example, let's increase the `get-books-v2` operation rate limits to `50 requests/minute` on the `v2-basic` plan in the development environment.
 
 We will be leveraging [kustomize](https://kustomize.io/) overlays in order to promote changes across the development, testing and production environments.
 
-Add the following snipet to the [dev product overlay](./3scale/library-books-api/overlays/dev/products/library-books-api.yaml) using a text editor or vim and save the changes.
+`v2-basic` plan rate limits in the product base (`5 requests/minute`):
 
-```yaml
-  applicationPlans:
-    v2-basic:
-      name: v2-basic
-      limits:
-      - period: eternity
-        value: 0
-        metricMethodRef:
-          systemName: get-books-v1
-      - period: minute
-        value: 50
-        metricMethodRef:
-          systemName: get-books-v2
-```
+![](images/product-before.png)
 
-- `v2-basic` plan rate limits in the product base
+1. Create a file named `plans-rate-limiting.yaml` in the [`./3scale/library-books-api/overlays/dev/products/`](./3scale/library-books-api/overlays/dev/products/) directory with the following content:
+    ```yaml
+    apiVersion: capabilities.3scale.net/v1beta1
+    kind: Product
+    metadata:
+      name: library-books-api
+    spec:
+      name: Library Books API
+      applicationPlans:
+        v2-basic:
+          name: v2-basic
+          limits:
+          - period: eternity
+            value: 0
+            metricMethodRef:
+              systemName: get-books-v1
+          - period: minute
+            value: 50
+            metricMethodRef:
+              systemName: get-books-v2
+    ```
+    ![](images/plans-rate-limiting.png)
 
-  ![](images/product-before.png)
+2. Edit the [`./3scale/library-books-api/overlays/dev/kustomization.yaml`](./3scale/library-books-api/overlays/dev/kustomization.yaml) file to add the `plans-rate-limiting.yaml` file in the list of patches to be applied on the base product.
+    ```yaml
+    apiVersion: kustomize.config.k8s.io/v1beta1
+    kind: Kustomization
+    metadata:
+      name: 3scale
+    resources:
+    - ../../base
+    patchesStrategicMerge:
+    - backends/books-api-v1.yaml
+    - backends/books-api-v2.yaml
+    - products/oidc-authentication-endpoint.yaml
+    - products/plans-rate-limiting.yaml
+    - activedocs/library-books-api.yaml
+    ```
+    ![](images/kustomization.png)
 
-- `v2-basic` plan rate limits that will be applied and merged using the dev overlay
+3. Commit and push the changes:
+    ```script shell
+    git add 3scale/library-books-api/overlays/dev/products/plans-rate-limiting.yaml 3scale/library-books-api/overlays/dev/kustomization.yaml
+    ```
+    ```script shell
+    git commit -m "Increased v2-basic plan Rate Limits to 50 requests/minute in DEV"
+    ```
+    ```script shell
+    git push -v -u origin
+    ```
 
-  ![](images/product-after.png)
+4. Navigate to the Gitops console and refresh the `threescale-dev` app. 
 
-Commit and Push the changes
+    ![](images/gitops-apps-refresh.png)
 
-```script shell
-git add 3scale/library-books-api/overlays/dev/products/library-books-api.yaml
-```
-```
-git commit -m "Change v2-basic plan Rate Limits"
-``` 
-```
-git push -v -u origin
-```
+    The `threescale-dev` app should be out of sync after the refresh.
 
-Navigate to the Gitops console and refresh the `threescale-dev` app. 
+    ![](images/dev-out-of-sync.png)
 
-![](images/gitops-apps-refresh.png)
+5. `SYNC` and `SYNCHRONIZE` the app. 
 
-The `threescale-dev` app should be out of sync after the refresh.
-
-![](images/dev-out-of-sync.png)
-
-`SYNC` and `SYNCHRONIZE` the app. 
-
-![](images/dev-gitops-sync.png)
+    ![](images/dev-gitops-sync.png)
 
 The `v2-basic` plan Rate Limit Changes should now be reflected in the development tenant
 
 ![](images/3scale-rate-limit-modified.png)
 
-### GitOps in Action Part 2 - Pushing Changes To The Test Environment
+### GitOps in Action Part 2 - Promoting Changes To The Test Environment
 
-Subsequently after development is done, we can repeat the same steps with the testing overlay in order to promote the changes to the testing environment.
-
-After applying the changes in the [test product overlay](./3scale/library-books-api/overlays/test/products/library-books-api.yaml), commit and push the changes.
+Promoting the changes to the Test environment is a matter of copying the modified files to the [`./3scale/library-books-api/overlays/test/`](./3scale/library-books-api/overlays/test/) directory and then pushing the changes.
 
 ```script shell
-git add 3scale/library-books-api/overlays/test/products/library-books-api.yaml
+cp ./3scale/library-books-api/overlays/dev/products/plans-rate-limiting.yaml ./3scale/library-books-api/overlays/test/products/plans-rate-limiting.yaml
+```
+```script shell
+cp ./3scale/library-books-api/overlays/dev/kustomization.yaml ./3scale/library-books-api/overlays/test/kustomization.yaml
+```
+```script shell
+git add 3scale/library-books-api/overlays/test/products/plans-rate-limiting.yaml 3scale/library-books-api/overlays/test/kustomization.yaml
 ```
 ```script shell
 git commit -m "Promote v2-basic plan Rate Limits change to testing"
@@ -296,14 +318,18 @@ The `threescale-test` app should be out of sync after the `Refresh`.
 
 `SYNC` and `SYNCHRONIZE` the app. The `v2-basic` plan Rate Limit Changes should now be reflected in the testing tenant.
 
-### GitOps in Action Part 3 - Pushing Changes To The Prod Environment
+### GitOps in Action Part 3 - Promoting Changes To The Prod Environment
 
-Finally after your testing is done you can similary promote the changes to the production environment.
-
-After applying the changes in the [prod product overlay](./3scale/library-books-api/overlays/prod/products/library-books-api.yaml), commit and push the changes.
+In the same way, promoting the changes to the Prod environment is a matter of copying the modified files to the [`./3scale/library-books-api/overlays/prod/`](./3scale/library-books-api/overlays/prod/) directory and then pushing the changes.
 
 ```script shell
-git add 3scale/library-books-api/overlays/prod/products/library-books-api.yaml
+cp ./3scale/library-books-api/overlays/test/products/plans-rate-limiting.yaml ./3scale/library-books-api/overlays/prod/products/plans-rate-limiting.yaml
+```
+```script shell
+cp ./3scale/library-books-api/overlays/test/kustomization.yaml ./3scale/library-books-api/overlays/prod/kustomization.yaml
+```
+```script shell
+git add 3scale/library-books-api/overlays/prod/products/plans-rate-limiting.yaml 3scale/library-books-api/overlays/prod/kustomization.yaml
 ```
 ```script shell
 git commit -m "Promote v2-basic plan Rate Limits change to production"
