@@ -1,0 +1,17 @@
+apiVersion: capabilities.3scale.net/v1beta1
+kind: Product
+metadata:
+  name: library-books-api
+spec:
+  name: Library Books API
+  applicationPlans:
+    v2-basic:
+      limits:
+      - period: eternity
+        value: 0
+        metricMethodRef:
+          systemName: get-books-v1
+      - period: minute
+        value: 50
+        metricMethodRef:
+          systemName: get-books-v2
