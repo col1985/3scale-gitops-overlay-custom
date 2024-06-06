@@ -8,5 +8,4 @@ patchesStrategicMerge:
 - backends/books-api-v1.yaml
 - backends/books-api-v2.yaml
 - products/oidc-authentication-endpoint.yaml
-- products/plans-rate-limiting.yaml
 - activedocs/library-books-api.yaml
