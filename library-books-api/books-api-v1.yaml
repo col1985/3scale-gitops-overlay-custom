@@ -36,7 +36,7 @@ metadata:
     app.kubernetes.io/name: books-api-v1
   name: books-api-v1-config
 data:
-  quarkus.jaeger.endpoint: http://jaeger-es-collector.observability.svc:14268/api/traces
+  quarkus.otel.exporter.otlp.traces.endpoint: http://jaeger-es-collector.observability.svc:4317
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -47,6 +47,7 @@ metadata:
     version: v1
     app.kubernetes.io/part-of: library-books-api
     app.kubernetes.io/name: books-api-v1
+    app.openshift.io/runtime: quarkus
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/path: /q/metrics
@@ -152,3 +153,44 @@ spec:
     app.kubernetes.io/name: books-api-v1
     app.kubernetes.io/part-of: library-books-api
   type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: books-api
+    version: v1
+    app.kubernetes.io/part-of: library-books-api
+    app.kubernetes.io/name: books-api-v1
+  name: books-api-v1
+spec:
+  selector:
+    matchLabels:
+      app: books-api
+      version: v1
+      app.kubernetes.io/part-of: library-books-api
+      app.kubernetes.io/name: books-api-v1
+  endpoints:
+    - scheme: http
+      targetPort: 8080
+      path: /q/metrics
+      interval: 10s
+      honorLabels: true
+# ---
+# apiVersion: route.openshift.io/v1
+# kind: Route
+# metadata:
+#   name: books-api-v1
+#   labels:
+#     app: books-api
+#     version: v1
+#     app.kubernetes.io/part-of: library-books-api
+#     app.kubernetes.io/name: books-api-v1
+# spec:
+#   port:
+#     targetPort: http
+#   tls:
+#     termination: edge
+#   to:
+#     kind: Service
+#     name: books-api-v1
