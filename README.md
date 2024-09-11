@@ -266,13 +266,13 @@ We will be leveraging [kustomize](https://kustomize.io/) overlays in order to pr
     ![](images/kustomization.png)
 
 3. Commit and push the changes:
-    ```script shell
+    ```shell
     git add 3scale/library-books-api/overlays/dev/products/plans-rate-limiting.yaml 3scale/library-books-api/overlays/dev/kustomization.yaml
     ```
-    ```script shell
+    ```shell
     git commit -m "Increased v2-basic plan Rate Limits to 50 requests/minute in DEV"
     ```
-    ```script shell
+    ```shell
     git push -v -u origin
     ```
 
@@ -296,19 +296,19 @@ The `v2-basic` plan Rate Limit Changes should now be reflected in the developmen
 
 Promoting the changes to the Test environment is a matter of copying the modified files to the [`./3scale/library-books-api/overlays/test/`](./3scale/library-books-api/overlays/test/) directory and then pushing the changes.
 
-```script shell
+```shell
 cp ./3scale/library-books-api/overlays/dev/products/plans-rate-limiting.yaml ./3scale/library-books-api/overlays/test/products/plans-rate-limiting.yaml
 ```
-```script shell
+```shell
 cp ./3scale/library-books-api/overlays/dev/kustomization.yaml ./3scale/library-books-api/overlays/test/kustomization.yaml
 ```
-```script shell
+```shell
 git add 3scale/library-books-api/overlays/test/products/plans-rate-limiting.yaml 3scale/library-books-api/overlays/test/kustomization.yaml
 ```
-```script shell
+```shell
 git commit -m "Promote v2-basic plan Rate Limits change to testing"
 ```
-```script shell
+```shell
 git push -v -u origin
 ```
 
@@ -322,19 +322,19 @@ The `threescale-test` app should be out of sync after the `Refresh`.
 
 In the same way, promoting the changes to the Prod environment is a matter of copying the modified files to the [`./3scale/library-books-api/overlays/prod/`](./3scale/library-books-api/overlays/prod/) directory and then pushing the changes.
 
-```script shell
+```shell
 cp ./3scale/library-books-api/overlays/test/products/plans-rate-limiting.yaml ./3scale/library-books-api/overlays/prod/products/plans-rate-limiting.yaml
 ```
-```script shell
+```shell
 cp ./3scale/library-books-api/overlays/test/kustomization.yaml ./3scale/library-books-api/overlays/prod/kustomization.yaml
 ```
-```script shell
+```shell
 git add 3scale/library-books-api/overlays/prod/products/plans-rate-limiting.yaml 3scale/library-books-api/overlays/prod/kustomization.yaml
 ```
-```script shell
+```shell
 git commit -m "Promote v2-basic plan Rate Limits change to production"
 ```
-```script shell
+```shell
 git push -v -u origin
 ```
 
