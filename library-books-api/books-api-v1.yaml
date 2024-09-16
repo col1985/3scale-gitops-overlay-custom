@@ -47,7 +47,7 @@ metadata:
     version: v1
     app.kubernetes.io/part-of: library-books-api
     app.kubernetes.io/name: books-api-v1
-    app.openshift.io/runtime: quarkus
+    app.openshift.io/runtime: camel
   annotations:
     prometheus.io/scrape: "true"
     prometheus.io/path: /q/metrics
@@ -71,7 +71,7 @@ spec:
       labels:
         app: books-api
         version: v1
-        app.openshift.io/runtime: quarkus
+        app.openshift.io/runtime: camel
         app.kubernetes.io/part-of: library-books-api
         app.kubernetes.io/name: books-api-v1
     spec:
