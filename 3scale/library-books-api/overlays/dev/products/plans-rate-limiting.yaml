@@ -12,6 +12,6 @@ spec:
         metricMethodRef:
           systemName: get-books-v1
       - period: minute
-        value: 50
+        value: 100
         metricMethodRef:
           systemName: get-books-v2
