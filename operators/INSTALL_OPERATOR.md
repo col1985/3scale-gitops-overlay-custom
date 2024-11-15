@@ -46,7 +46,7 @@ oc patch installplan <installplan-name> -n openshift-operators \
 --type merge --patch '{"spec":{"approved":true}}'
 ```
 
-## 3scale 2.14 subsription
+## 3scale 2.14 subscription
 
 ```bash
 # operator.yaml
@@ -64,7 +64,7 @@ spec:
   startingCSV: 3scale-operator.v0.11.12
 ```
 
-## 3scale 2.15 subsription
+## 3scale 2.15 subscription
 
 ```bash
 # operator.yaml
