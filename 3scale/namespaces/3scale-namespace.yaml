@@ -1,0 +1,9 @@
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: 3scale
+  annotations:
+    openshift.io/display-name: 3scale
+    openshift.io/description: Namespace for deploying all pods required 3scale.
+  labels:
+    name: 3scale

@@ -1,0 +1,18 @@
+apiVersion: apps.3scale.net/v1alpha1
+kind: APIManager
+metadata:
+  name: 3scale
+spec:
+  system:
+    fileStorage:
+      simpleStorageService:
+        configurationSecretRef:
+          name: aws-auth
+    redisResources:
+      limits:
+        memory: 6Gi
+  backend:
+    redisResources:
+      limits:
+        memory: 6Gi
+  wildcardDomain: '$WILDCARD_DOMAIN'

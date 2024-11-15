@@ -7,12 +7,12 @@ spec:
   email: prod@example.openshift.com
   masterCredentialsRef:
     name: system-seed
-    namespace: 3scale-gitops
+    namespace: 3scale
   organizationName: production
   passwordCredentialsRef:
     name: tenant-admin-secret
-    namespace: 3scale-gitops
-  systemMasterUrl: 'https://master.apps.rosa-nfvcf.ybvx.p1.openshiftapps.com'
+    namespace: 3scale
+  systemMasterUrl: https://master.wildcard-domain.com'
   tenantSecretRef:
     name: tenant-secret
   username: admin

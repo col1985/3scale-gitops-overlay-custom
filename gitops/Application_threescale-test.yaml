@@ -14,7 +14,7 @@ spec:
   project: default
   source:
     path: 3scale/library-books-api/overlays/test
-    repoURL: https://github.com/jeannyil-3scale-resources/3scale-gitops-overlay.git
+    repoURL: https://github.com/col1985/3scale-gitops-overlay-custom.git
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
