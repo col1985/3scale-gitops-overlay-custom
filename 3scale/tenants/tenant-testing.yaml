@@ -12,7 +12,7 @@ spec:
   passwordCredentialsRef:
     name: tenant-admin-secret
     namespace: 3scale
-  systemMasterUrl: https://master.wildcard-domain.com'
+  systemMasterUrl: 'https://master.apps.rosa-zgw8x.bjni.p1.openshiftapps.com'
   tenantSecretRef:
     name: tenant-secret
   username: admin

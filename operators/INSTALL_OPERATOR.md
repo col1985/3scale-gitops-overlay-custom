@@ -3,26 +3,27 @@
 ## Check for 3Scale Operator in Cluster
 
 ```bash
-oc get packagemanifests | grep 3scale-operator
+export OPERATOR=3scale-operator
+oc get packagemanifests | grep ${OPERATOR}
 ```
 
 ## Get Channel and currentCSV props
 
 ```bash
-oc get packagemanifests 3scale-operator -o \
+oc get packagemanifests  ${OPERATOR} -o \
 jsonpath="{range .status.channels[*]}Channel: {.name} currentCSV: {.currentCSV}{'\n'}{end}"
 ```
 
 ## Get the catalog Source
 
 ```bash
-oc get packagemanifests 3scale-operator -o jsonpath={.status.catalogSource} ; echo
+oc get packagemanifests  ${OPERATOR} -o jsonpath={.status.catalogSource} ; echo
 ```
 
 ## Get Catalog Namespace
 
 ```bash
-oc get packagemanifests 3scale-operator -o jsonpath={.status.catalogSourceNamespace} ; echo
+oc get packagemanifests  ${OPERATOR} -o jsonpath={.status.catalogSourceNamespace} ; echo
 ```
 
 ## Create 3Scale subscription, install for all namespaces

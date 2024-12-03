@@ -2,3 +2,6 @@ kind: Namespace
 apiVersion: v1
 metadata:
   name: threescale-testing
+  annotations:
+    openshift.io/display-name: 3scale-test-env
+    openshift.io/description: testing namespace for 3scale tenant.
