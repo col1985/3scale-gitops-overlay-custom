@@ -9,13 +9,13 @@ metadata:
   name: 3scale-dev
 spec:
   destination:
-    namespace: 3scale-dev
+    namespace: 3scale
     server: https://kubernetes.default.svc
   project: default
   source:
     path: 3scale/library-books-api/overlays/dev
     repoURL: https://github.com/col1985/3scale-gitops-overlay-custom.git
-    targetRevision: HEAD
+    targetRevision: example-no-tenant
   syncPolicy:
     syncOptions:
       - ApplyOutOfSyncOnly=true
