@@ -6,7 +6,7 @@ metadata:
   name: library-books-api
 spec:
   providerAccountRef:
-    name: threescale-provider-account
+    name: system-seed
   activeDocOpenAPIRef:
     url: >-
       https://raw.githubusercontent.com/col1985/3scale-gitops-overlay-custom/example-no-tenant/3scale/library-books-api/overlays/prod/openapis/library-books-api.yaml

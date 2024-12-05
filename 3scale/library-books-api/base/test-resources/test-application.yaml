@@ -29,7 +29,7 @@ spec:
   passwordCredentialsRef:
     name: test-user-secret
   providerAccountRef:
-    name: threescale-provider-account
+    name: system-seed
   role: admin
   username: testdeveloper
 ---

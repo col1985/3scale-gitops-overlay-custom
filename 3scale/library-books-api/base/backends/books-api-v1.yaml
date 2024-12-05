@@ -8,4 +8,4 @@ spec:
   privateBaseURL: http://books-api-v1.library-apis.svc.cluster.local:80/api/v1
   description: "Manages a library books inventory (v1)"
   providerAccountRef:
-    name: threescale-provider-account
+    name: system-seed

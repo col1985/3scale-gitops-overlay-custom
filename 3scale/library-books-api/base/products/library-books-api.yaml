@@ -7,7 +7,7 @@ spec:
   systemName: library-books-api
   description: Manages a library books inventory
   providerAccountRef:
-    name: threescale-provider-account
+    name: system-seed
   deployment:
     apicastHosted:
       authentication:
