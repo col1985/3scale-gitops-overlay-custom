@@ -6,10 +6,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
     # Alternatively, you can use background cascading deletion
     # - resources-finalizer.argocd.argoproj.io/background
-  name: threescale-test
+  name: library-api-test
 spec:
   destination:
-    namespace: threescale-testing
+    namespace: library-api-test
     server: https://kubernetes.default.svc
   project: default
   source:

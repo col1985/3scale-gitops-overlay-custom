@@ -7,4 +7,4 @@ metadata:
   name: library-books-api
 spec:
   productCRName: library-books-api
-  production: true
+  production: false

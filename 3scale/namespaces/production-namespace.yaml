@@ -1,7 +1,0 @@
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: threescale-production
-  annotations:
-    openshift.io/display-name: 3scale-prod-env
-    openshift.io/description: Production namespace for 3scale tenant.

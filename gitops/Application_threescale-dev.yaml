@@ -6,10 +6,10 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
     # Alternatively, you can use background cascading deletion
     # - resources-finalizer.argocd.argoproj.io/background
-  name: threescale-dev
+  name: 3scale-dev
 spec:
   destination:
-    namespace: threescale-development
+    namespace: 3scale-dev
     server: https://kubernetes.default.svc
   project: default
   source:
@@ -18,4 +18,4 @@ spec:
     targetRevision: HEAD
   syncPolicy:
     syncOptions:
-    - ApplyOutOfSyncOnly=true
+      - ApplyOutOfSyncOnly=true

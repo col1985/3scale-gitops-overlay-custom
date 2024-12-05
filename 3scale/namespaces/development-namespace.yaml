@@ -1,7 +1,0 @@
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: threescale-development
-  annotations:
-    openshift.io/display-name: 3scale-dev-env
-    openshift.io/description: Development namespace for 3scale tenant.
