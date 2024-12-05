@@ -29,7 +29,7 @@ spec:
   passwordCredentialsRef:
     name: test-user-secret
   providerAccountRef:
-    name: tenant-secret
+    name: threescale-provider-account
   role: admin
   username: testdeveloper
 ---
@@ -43,7 +43,7 @@ spec:
   accountCR:
     name: test-account
   applicationPlanName: v2-basic
-  description: 'Test Account application for the Library Books API'
+  description: "Test Account application for the Library Books API"
   name: Test Account App
   productCR:
     name: library-books-api
